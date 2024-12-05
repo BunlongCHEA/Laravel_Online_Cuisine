@@ -1,0 +1,264 @@
+{
+	"info": {
+		"_postman_id": "5642869d-5b0f-4d4f-a3c7-0d32a8bcfdaa",
+		"name": "Online_Food",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33794548"
+	},
+	"item": [
+		{
+			"name": "Cuisines",
+			"item": [
+				{
+					"name": "Get All Cuisines",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin@local.id",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/api/cuisines",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"api",
+								"cuisines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Id Cuisine",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin@local.id",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/api/cuisines/1",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"api",
+								"cuisines",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Id Cuisine",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin@local.id",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pad Thai\",\r\n    \"description\": \"Pad Thai is one of the world’s most beloved noodle dishes. Along with Thai Green Curry and Red Curry, this is the dish by which every Thai restaurant is measured. In fact, I was trying to find the “best” Thai restaurant in my area just last week and it brought me much amusement that Pad Thai was the baseline of a favourable or unfavourable rating for almost every review\",\r\n    \"image\": \"images/thai-pad-thai.jpg\",\r\n    \"category_id\": 2,\r\n    \"price\": 10.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/api/cuisines/4",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"api",
+								"cuisines",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Id Cuisine",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin@local.id",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pad Thai\",\r\n    \"description\": \"Pad Thai is one of the world’s most beloved noodle dishes. Along with Thai Green Curry and Red Curry, this is the dish by which every Thai restaurant is measured. In fact, I was trying to find the “best” Thai restaurant in my area just last week and it brought me much amusement that Pad Thai was the baseline of a favourable or unfavourable rating for almost every review\",\r\n    \"image\": \"images/thai-pad-thai.jpg\",\r\n    \"category_id\": 2,\r\n    \"price\": 9.99\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/api/cuisines",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"api",
+								"cuisines"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Id Cuisine",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin@local.id",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{LOCAL}}/api/cuisines/50",
+							"host": [
+								"{{LOCAL}}"
+							],
+							"path": [
+								"api",
+								"cuisines",
+								"50"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
