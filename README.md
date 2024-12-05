@@ -23,7 +23,7 @@ You can send data (cuisine) to the API filename - **Online_Food.postman_collecti
         composer create-project --prefer-dist laravel/laravel online_food
 
 ## After download this project. You need to reload image : 
-- Delete storage located - public/storage -
+- Delete storage located - public/storage - Otherwise, if not found, can just execute script below
 - Then can execute below command
 
         php artisan storage:link
