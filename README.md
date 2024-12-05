@@ -42,3 +42,7 @@ You can send data (cuisine) to the API filename - **Online_Food.postman_collecti
 
         php artisan make:migration add_role_to_user_table
         php artisan migrate:rollback
+
+## Create super admin user and Run with - **app:create-admin-user** - you can also change this command in **CreateAdminUser** file
+        php artisan make:command CreateAdminUser
+        php artisan app:create-admin-user
