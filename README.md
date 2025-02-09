@@ -1,12 +1,42 @@
-# I. Login Email and Password with - admin OR user - role
+# What To Do, After Clone Project
 
-- You can login with this admin role
+In Laravel projects, it's common to see many files ignored by Git due to the default .gitignore file that Laravel includes. This file is designed to prevent unnecessary files and directories from being tracked by version control, ensuring that your repository stays clean and only contains important source code and configuration files.
 
-        admin@local.id  /  123456789
+Now, after clone this project, you need:
 
-- Or login with this user role
+## Step 1: Install Dependencies
 
-        user@local.id  /  123456789
+    composer install
+
+## Step 2: Copy and Configure .env
+Update .env with your database and application settings.
+
+    cp .env.example .env
+
+## Step 3: Generate App Key
+
+    php artisan key:generate
+
+## Step 4: Run Migrations (if using a database)
+This step will prompt to create **database.sqlite**, just write **yes** to create first
+
+    php artisan migrate
+
+## Step 5: Run the Application
+
+    php artisan serve
+
+# I. Register and Login Email/Password with - admin OR user - role
+
+To have admin role to access all function in this project, use command below:
+
+    php artisan app:create-admin-user
+
+- Enter username
+- Enter email so that can use to login
+- Enter password 
+
+For user role, you can register in GUI
 
 # II. Send Cuisine Data using API
 
