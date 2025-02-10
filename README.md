@@ -2,7 +2,7 @@
 
 In Laravel projects, it's common to see many files ignored by Git due to the default .gitignore file that Laravel includes. This file is designed to prevent unnecessary files and directories from being tracked by version control, ensuring that your repository stays clean and only contains important source code and configuration files.
 
-Now, after clone this project, you need:
+Now, after clone this project, assume you already install composer and php (if not, please refer to document or GPT), you need:
 
 ## Step 1: Install Dependencies
 
