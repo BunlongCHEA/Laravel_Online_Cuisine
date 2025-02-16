@@ -91,8 +91,27 @@
 
     <!-- Add to Cart Button at the Bottom -->
     <div id="add-to-cart-container" class="fixed-bottom d-none text-center p-1" style="background: #f8f9fa;">
-        <a href="{{ route('carts.index') }}" class="btn btn-primary w-100" id="add-to-cart">Add to Cart</a>
+        <a href="javascript:void(0);" class="btn btn-primary w-100" id="add-to-cart">Add to Cart</a>
     </div>
+
+    <!-- Modal for confirmation -->
+    <div class="modal" tabindex="-1" id="cartConfirmationModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cart Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your item has been added to the cart!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script>
@@ -155,7 +174,10 @@
                 }).then(response => response.json()) // converts the server’s response to JSON.
                 .then(data => { // checks if the response indicates success by looking for data.success
                     if (data.success) {
-                        window.location.href = "{{ route('carts.index') }}";
+                        // window.location.href = "{{ route('carts.index') }}";
+			// Show the confirmation modal
+                        const modal = new bootstrap.Modal(document.getElementById('cartConfirmationModal'));
+                        modal.show();
                     }
                 });
             });

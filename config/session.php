@@ -156,7 +156,11 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN'),
+    'domain' => env('SESSION_DOMAIN', function() {
+    	$host = request()->getHost();
+    	return ($host === 'localhost' || $host === '127.0.0.1') ? null : $host;
+    }),
+    'secure' => env('SESSION_SECURE_COOKIE', false),
 
     /*
     |--------------------------------------------------------------------------
