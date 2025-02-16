@@ -1,4 +1,41 @@
-# What To Do, After Clone Project
+# For Using Docker : Clone source code, and build as Docker Compose
+
+## Step 1: Install Dependencies
+
+    composer install
+
+## Step 2: Change Owner and Permission
+
+You must change source code to user root:www-data before build as docker running; otherwise, it will not be running as Fail File Permission
+
+    chown -R root:www-data .
+    # OR
+    chown -R www-data:www-data .
+    
+    # Optional
+    chmod -R 775 .
+
+## Step 3: Build and Run Docker Compose
+
+    docker-compose up -d --build
+
+## Step 4: Check Whether All Service Running - App-Laravel, Postgres, Nginx
+
+    docker compose ps -a
+
+## Step 5: Create Admin Role User for Login
+
+    docker-compose exec app php artisan app:create-admin-user
+
+## Step 6: Shutdown Docker for All Service
+
+    docker-compose down -v
+
+## * Be Aware: docker prune with -a can delete unused containers, networks, images (both dangling and unused)
+
+    docker system prune -a
+
+# For Development Running : What to do, after Clone project
 
 In Laravel projects, it's common to see many files ignored by Git due to the default .gitignore file that Laravel includes. This file is designed to prevent unnecessary files and directories from being tracked by version control, ensuring that your repository stays clean and only contains important source code and configuration files.
 
