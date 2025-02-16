@@ -72,7 +72,7 @@ class CartController extends Controller
             ]),
         ]);
 
-        return redirect()->route('carts.index');        
+        return response()->json(['success' => true]); // redirect()->route('carts.index');
     }
 
     /**

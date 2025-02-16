@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('email')->nullable(); // Email of the user
             $table->string('status')->nullable(); // Status (e.g., success/unauthorized)
             $table->string('model')->nullable();
-            $table->string('data')->nullable();
+            $table->text('data')->nullable();
         });
     }
 
