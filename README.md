@@ -8,10 +8,10 @@ Now, after clone this project, assume you already install composer and php (if n
 
     composer install
 
-## Step 2: Copy and Configure .env
-Update .env with your database and application settings.
+## Step 2: Change Configure .env To Your Need
+You can make update .env with your database and application settings. For example, use SQLLite for Development first instead of postgres **OR** delete old and copy new one from .env.example
 
-    cp .env.example .env
+    nano .env
 
 ## Step 3: Generate App Key
 
