@@ -39,6 +39,8 @@ You must change source code to user root:www-data before build as docker running
 
     docker system prune -a
 
+***
+
 # For Development Running : What to do, after Clone project
 
 In Laravel projects, it's common to see many files ignored by Git due to the default .gitignore file that Laravel includes. This file is designed to prevent unnecessary files and directories from being tracked by version control, ensuring that your repository stays clean and only contains important source code and configuration files.
@@ -52,6 +54,7 @@ Now, after clone this project, assume you already install composer and php (if n
 ## Step 2: Change Configure .env To Your Need
 You can make update .env with your database and application settings. For example, use SQLLite for Development first instead of postgres **OR** delete old and copy new one from .env.example
 
+    cp .env.example .env 
     nano .env
 
 ## Step 3: Generate App Key
