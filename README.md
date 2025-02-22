@@ -4,7 +4,11 @@
 
     composer install
 
-## Step 2: Change Owner and Permission
+## Step 2: Generate App Key
+
+    php artisan key:generate
+
+## Step 3: Change Owner and Permission
 
 You must change source code to user root:www-data before build as docker running; otherwise, it will not be running as Fail File Permission
 
@@ -15,19 +19,19 @@ You must change source code to user root:www-data before build as docker running
     # Optional
     chmod -R 775 .
 
-## Step 3: Build and Run Docker Compose
+## Step 4: Build and Run Docker Compose
 
     docker-compose up -d --build
 
-## Step 4: Check Whether All Service Running - App-Laravel, Postgres, Nginx
+## Step 5: Check Whether All Service Running - App-Laravel, Postgres, Nginx
 
     docker compose ps -a
 
-## Step 5: Create Admin Role User for Login
+## Step 6: Create Admin Role User for Login
 
     docker-compose exec app php artisan app:create-admin-user
 
-## Step 6: Shutdown Docker for All Service
+## Step 7: Shutdown Docker for All Service
 
     docker-compose down -v
 
