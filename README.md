@@ -10,14 +10,10 @@
 
 ## Step 3: Change Owner and Permission
 
-You must change source code to user root:www-data before build as docker running; otherwise, it will not be running as Fail File Permission
+You must change source code to user www-data:www-data before build as docker running; otherwise, it will not be running as Fail File Permission
 
-    chown -R root:www-data .
-    # OR
     chown -R www-data:www-data .
-    
-    # Optional
-    chmod -R 775 .
+    chmod -R 777 .
 
 ## Step 4: Build and Run Docker Compose
 
