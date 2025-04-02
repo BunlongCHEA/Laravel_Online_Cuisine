@@ -14,7 +14,7 @@ pipeline {
         DORMAIN_NAME= 'food.bunlong.site'
 
         DB_CONNECTION = 'pgsql'
-        DB_HOST= '[IP_ADDRESS]'
+        DB_HOST= '35.198.233.175'
         DB_PORT= '5432'
         DB_DATABASE= 'cuisine'
         DB_USERNAME= 'admin'
@@ -73,25 +73,24 @@ pipeline {
                     echo '************************************** \n'
                     
                     if [ "${params.USE_HTTPS}" = "true" ]; then
-                        sed -i 's|\\n
-                        |\\nserver {
-                        |\\n    listen 443 ssl;
-                        |\\n    server_name ${DORMAIN_NAME};
-                        |\\n    ssl_certificate ${CERTIFICATE_NAME};
-                        |\\n    ssl_certificate_key ${CERTIFICATE_KEY};
-                        |\\n    ssl_protocols TLSv1.2 TLSv1.3;
-                        |\\n    ssl_ciphers HIGH:!aNULL:!MD5;
-                        |\\n    root /var/www/html/public;
-                        |\\n    index index.php index.html;
-                        |\\nlocation / {
-                        |\\n    try_files $uri $uri/ /index.php?$query_string;
-                        |\\n}
-                        |\\nlocation ~ \\.php$ {
-                        |\\n    include fastcgi_params;
-                        |\\n    fastcgi_pass app:9000;
-                        |\\n    fastcgi_index index.php;
-                        |\\n    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                        |\\n}
+                        sed -i 's|\\\\n|\\\\nserver {\
+                        \\\\n    listen 443 ssl;\
+                        \\\\n    server_name ${DORMAIN_NAME};\
+                        \\\\n    ssl_certificate ${CERTIFICATE_NAME};\
+                        \\\\n    ssl_certificate_key ${CERTIFICATE_KEY};\
+                        \\\\n    ssl_protocols TLSv1.2 TLSv1.3;\
+                        \\\\n    ssl_ciphers HIGH:!aNULL:!MD5;\
+                        \\\\n    root /var/www/html/public;\
+                        \\\\n    index index.php index.html;\
+                        \\\\nlocation / {\
+                        \\\\n    try_files $uri $uri/ /index.php?$query_string;\
+                        \\\\n}\
+                        \\\\nlocation ~ \\.php$ {\
+                        \\\\n    include fastcgi_params;\
+                        \\\\n    fastcgi_pass app:9000;\
+                        \\\\n    fastcgi_index index.php;\
+                        \\\\n    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;\
+                        \\\\n}\
                         |g' ${NGINX_FILE}
 
                         echo '************************************** \n'
