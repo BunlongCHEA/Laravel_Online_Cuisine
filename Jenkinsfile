@@ -64,7 +64,8 @@ pipeline {
                 }
             }
         }
-        stage("Config Nginx for Either HTTP / HTTPS") {
+
+        stage('Config Nginx for Either HTTP-HTTPS') {
             steps {
                 script {
                     sh """
@@ -72,35 +73,7 @@ pipeline {
                     cat ${NGINX_FILE}
                     echo '************************************** \n'
                     
-                    if [ "${params.USE_HTTPS}" = "true" ]; then
-                        sed -i 's|\\\\n|\\\\nserver {\
-                        \\\\n    listen 443 ssl;\
-                        \\\\n    server_name ${DORMAIN_NAME};\
-                        \\\\n    ssl_certificate ${CERTIFICATE_NAME};\
-                        \\\\n    ssl_certificate_key ${CERTIFICATE_KEY};\
-                        \\\\n    ssl_protocols TLSv1.2 TLSv1.3;\
-                        \\\\n    ssl_ciphers HIGH:!aNULL:!MD5;\
-                        \\\\n    root /var/www/html/public;\
-                        \\\\n    index index.php index.html;\
-                        \\\\nlocation / {\
-                        \\\\n    try_files $uri $uri/ /index.php?$query_string;\
-                        \\\\n}\
-                        \\\\nlocation ~ \\.php\$ {\
-                        \\\\n    include fastcgi_params;\
-                        \\\\n    fastcgi_pass app:9000;\
-                        \\\\n    fastcgi_index index.php;\
-                        \\\\n    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;\
-                        \\\\n}\
-                        |g' ${NGINX_FILE}
-
-                        echo '************************************** \n'
-                        echo '***After Configuring ${NGINX_FILE} for HTTPS...'
-                        cat ${NGINX_FILE}
-                        echo '************************************** \n'
-                    else
-                        echo 'Configuring Nginx for HTTP...'
-                        sed -i 's|server_name localhost;|server_name ${DORMAIN_NAME}|g' ${DOCKER_COMPOSE_FILE}
-                    fi
+                    
 
                     echo '***After Configuring ${NGINX_FILE}...'
                     cat ${NGINX_FILE}
@@ -119,23 +92,23 @@ pipeline {
         }
     }
     post{
-        always{
-           script {
-                sh """
-                    curl -s -X POST https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage \
-                        -d chat_id=${TELEGRAM_CHAT_ID} \
-                        -d parse_mode="HTML" \
-                        -d disable_web_page_preview=true \
-                        -d text="
-                        🔔 <b>*Jenkins Build Notification*</b> 🔔
-                        %0A📚<b>Stage</b>: Deploy ${PROJECT_NAME} \
-                        %0A🟢<b>Status:</b> ${currentBuild.result} \
-                        %0A🔢<b>Version:</b> ${params.APP_ENV}-${BUILD_NUMBER} \
-                        %0A📌<b>Environment:</b> ${params.APP_ENV} \
-                        %0A🔗<b>Application URL:</b> ${APP_URL} \
-                        %0A👤<b>User Build:</b> ${BUILD_USER}"
-                """
-           }
-        }
+        // always{
+        //    script {
+        //         sh """
+        //             curl -s -X POST https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage \
+        //                 -d chat_id=${TELEGRAM_CHAT_ID} \
+        //                 -d parse_mode="HTML" \
+        //                 -d disable_web_page_preview=true \
+        //                 -d text="
+        //                 🔔 <b>*Jenkins Build Notification*</b> 🔔
+        //                 %0A📚<b>Stage</b>: Deploy ${PROJECT_NAME} \
+        //                 %0A🟢<b>Status:</b> ${currentBuild.result} \
+        //                 %0A🔢<b>Version:</b> ${params.APP_ENV}-${BUILD_NUMBER} \
+        //                 %0A📌<b>Environment:</b> ${params.APP_ENV} \
+        //                 %0A🔗<b>Application URL:</b> ${APP_URL} \
+        //                 %0A👤<b>User Build:</b> ${BUILD_USER}"
+        //         """
+        //    }
+        // }
     }
 }
