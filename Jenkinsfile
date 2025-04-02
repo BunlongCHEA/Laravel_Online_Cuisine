@@ -23,7 +23,7 @@ pipeline {
         LARAVEL_ENV = '.env'
         DOCKER_COMPOSE_FILE = 'docker-compose.yaml'
         DOCKER_ENTRY_FILE = 'docker-entrypoint.sh'
-        NGINX_FILE = './nginx/nginx.conf'
+        NGINX_FILE = './nginx/default.conf'
 
         TELEGRAM_BOT_TOKEN = '8119780035:AAHYYPcMj_5xdWVA5iD14Nh-4VzWfgEhDFw'
         TELEGRAM_CHAT_ID = '-4674725761'
