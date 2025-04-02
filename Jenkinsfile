@@ -86,7 +86,7 @@ pipeline {
                         |\\nlocation / {
                         |\\n    try_files $uri $uri/ /index.php?$query_string;
                         |\\n}
-                        |\\nlocation ~ \.php$ {
+                        |\\nlocation ~ \\.php$ {
                         |\\n    include fastcgi_params;
                         |\\n    fastcgi_pass app:9000;
                         |\\n    fastcgi_index index.php;
