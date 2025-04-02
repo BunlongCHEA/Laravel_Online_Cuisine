@@ -10,7 +10,7 @@ pipeline {
     }
     environment {
         PROJECT_NAME = 'Online_Food'
-        APP_URL= 'http://146.190.111.215:80/'
+        APP_URL= 'http://food.bunlong.site'
         DORMAIN_NAME= 'food.bunlong.site'
 
         DB_CONNECTION = 'pgsql'
@@ -73,8 +73,17 @@ pipeline {
                     cat ${NGINX_FILE}
                     echo '************************************** \n'
                     
-                    
+                    if [ "${params.USE_HTTPS}" = true ]; then
+                        sed -i 's|/etc/nginx/ssl/cert.pem|${params.CERTIFICATE_NAME}|g' ${NGINX_FILE}
+                        sed -i 's|/etc/nginx/ssl/cert.key|${params.CERTIFICATE_KEY_NAME}|g' ${NGINX_FILE}
+                        sed -i 's|localhost|${DORMAIN_NAME}|g' ${NGINX_FILE}
 
+                    else
+                        echo 'Configuring Nginx for HTTP...'
+                        sed -i 's|server_name localhost;|server_name ${DORMAIN_NAME}|g' ${DOCKER_COMPOSE_FILE}
+                    fi
+
+                    echo '************************************** \n'
                     echo '***After Configuring ${NGINX_FILE}...'
                     cat ${NGINX_FILE}
                     echo '************************************** \n'
@@ -86,7 +95,7 @@ pipeline {
         stage("Build and Start Containers") {
             steps {
                 script {
-                    sh 'docker-compose up -d --build'
+                    sh 'docker-compose -f ${DOCKER_ENTRY_FILE} up -d --build'
                 }
             }
         }
