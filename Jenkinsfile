@@ -100,30 +100,9 @@ pipeline {
                 script {
                     sh """
                     echo '************************************** \n'
-                    echo '***Stop Containers...'
-                    echo '************************************** \n'
-                    docker stop ${CONTAINER_APP}
-                    docker stop ${CONTAINER_DB}
-                    docker stop ${CONTAINER_NGINX}
-
-                    echo '************************************** \n'
-                    echo '***Remove Containers...'
-                    echo '************************************** \n'
-                    docker rm ${CONTAINER_APP}
-                    docker rm ${CONTAINER_DB}
-                    docker rm ${CONTAINER_NGINX}
-
-                    echo '************************************** \n'
-                    echo '***Removed Build Containers...'
-                    echo '************************************** \n'
-                    docker rmi ${CONTAINER_APP}
-                    docker rmi ${CONTAINER_DB}
-                    docker rmi ${CONTAINER_NGINX}
-
-                    echo '************************************** \n'
                     echo '***Rebuild Containers...'
                     echo '************************************** \n'
-                    docker-compose up -d --build
+                    docker-compose up -d --force-recreate
                     """
                 }
             }
