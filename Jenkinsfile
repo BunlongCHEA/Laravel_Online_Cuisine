@@ -95,7 +95,10 @@ pipeline {
         stage("Build and Start Containers") {
             steps {
                 script {
-                    sh 'docker-compose -f ${DOCKER_ENTRY_FILE} up -d --build'
+                    sh """
+                    
+                    docker-compose up -d --build
+                    """
                 }
             }
         }
