@@ -74,6 +74,7 @@ pipeline {
                     sh """
                     echo '***Before Configuring ${NGINX_FILE}...'
                     cat ${NGINX_FILE}
+                    ls ./nginx/ssl
                     echo '************************************** \n'
                     
                     if [ "${params.USE_HTTPS}" = true ]; then
