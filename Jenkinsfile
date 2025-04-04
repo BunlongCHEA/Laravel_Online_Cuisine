@@ -14,7 +14,7 @@ pipeline {
         DORMAIN_NAME= 'food.bunlong.site'
         CONTAINER_IMG_APP = 'laravel-food_app'
         CONTAINER_IMG_DB = 'postgres'
-        CONTAINER_IMG_NGINX = 'nginx_'
+        CONTAINER_IMG_NGINX = 'nginx'
 
         DB_CONNECTION = 'pgsql'
         DB_HOST= '35.198.233.175'
