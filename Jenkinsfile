@@ -12,9 +12,9 @@ pipeline {
         PROJECT_NAME = 'Online_Food'
         APP_URL= 'http://food.bunlong.site'
         DORMAIN_NAME= 'food.bunlong.site'
-        CONTAINER_APP = 'order_cuisine'
-        CONTAINER_DB = 'postgres_db'
-        CONTAINER_NGINX = 'nginx_server'
+        CONTAINER_IMG_APP = 'laravel-food_app'
+        CONTAINER_IMG_DB = 'postgres'
+        CONTAINER_IMG_NGINX = 'nginx_'
 
         DB_CONNECTION = 'pgsql'
         DB_HOST= '35.198.233.175'
@@ -100,9 +100,16 @@ pipeline {
                 script {
                     sh """
                     echo '************************************** \n'
+                    echo '***Stop and Remove all Containers...'
+                    echo '************************************** \n'
+                    docker-compose down
+                    docker rmi ${CONTAINER_IMG_APP} ${CONTAINER_IMG_DB} ${CONTAINER_IMG_NGINX}
+                    docker images
+
+                    echo '************************************** \n'
                     echo '***Rebuild Containers...'
                     echo '************************************** \n'
-                    docker-compose up -d --force-recreate
+                    docker-compose up -d --build
                     """
                 }
             }
