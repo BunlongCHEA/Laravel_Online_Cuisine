@@ -10,7 +10,7 @@ pipeline {
     }
     environment {
         PROJECT_NAME = 'Online_Food'
-        APP_URL= 'http://food.bunlong.site'
+        APP_URL= 'https://food.bunlong.site/'
         DORMAIN_NAME= 'food.bunlong.site'
         CONTAINER_IMG_APP = 'laravel-food_app'
         CONTAINER_IMG_DB = 'postgres'
@@ -95,6 +95,22 @@ pipeline {
                     echo '***After Configuring ${DOCKER_COMPOSE_FILE}...'
                     cat ${DOCKER_COMPOSE_FILE}
                     echo '************************************** \n'
+                    """
+                }
+            }
+        }
+
+        stage("Install Dependencies") {
+            steps {
+                script {
+                    sh """
+                    echo '************************************** \n'
+                    echo '***Install Dependencies...'
+                    echo '************************************** \n'
+                    composer install
+                    php artisan key:generate
+                    chown -R www-data:www-data .
+                    chmod -R 777 .
                     """
                 }
             }
