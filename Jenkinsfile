@@ -91,6 +91,11 @@ pipeline {
                     echo '***After Configuring ${NGINX_FILE}...'
                     cat ${NGINX_FILE}
                     echo '************************************** \n'
+
+                    echo '************************************** \n'
+                    echo '***After Configuring ${DOCKER_COMPOSE_FILE}...'
+                    cat ${DOCKER_COMPOSE_FILE}
+                    echo '************************************** \n'
                     """
                 }
             }
