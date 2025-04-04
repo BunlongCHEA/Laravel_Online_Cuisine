@@ -36,8 +36,8 @@ services:
     volumes:
       - .:/var/www/html
       - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./nginx/ssl/certificate.pem:/etc/nginx/ssl/certificate.pem
-      - ./nginx/ssl/private_key.key:/etc/nginx/ssl/private_key.key
+      - ./nginx/certificate.pem:/etc/nginx/ssl/certificate.pem
+      - ./nginx/private_key.key:/etc/nginx/ssl/private_key.key
     depends_on:
       - app
     networks:

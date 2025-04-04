@@ -78,8 +78,8 @@ pipeline {
                     echo '************************************** \n'
                     
                     if [ "${params.USE_HTTPS}" = true ]; then
-                        sed -i 's|./nginx/ssl/certificate.pem|${params.CERTIFICATE_NAME}|g' ${DOCKER_COMPOSE_FILE}
-                        sed -i 's|./nginx/ssl/private_key.key|${params.CERTIFICATE_KEY_NAME}|g' ${DOCKER_COMPOSE_FILE}
+                        sed -i 's|./nginx/certificate.pem|${params.CERTIFICATE_NAME}|g' ${DOCKER_COMPOSE_FILE}
+                        sed -i 's|./nginx/private_key.key|${params.CERTIFICATE_KEY_NAME}|g' ${DOCKER_COMPOSE_FILE}
                         sed -i 's|localhost|${DORMAIN_NAME}|g' ${NGINX_FILE}
 
                     else
