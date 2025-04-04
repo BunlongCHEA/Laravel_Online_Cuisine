@@ -2,7 +2,7 @@ pipeline {
     agent any
     parameters {
         string(name: 'BRANCH', defaultValue: 'main', description: 'Branch to build from')
-        choice(name: 'APP_ENV', choices: ['Production', 'Development', 'Staging'], description: 'Select the deployment environment')
+        choice(name: 'APP_ENV', choices: ['Staging', 'Production', 'Development'], description: 'Select the deployment environment')
         booleanParam(name: 'USE_HTTPS', defaultValue: false, description: 'Run on HTTPS (Requires Certificate)')
         // string(name: 'CERTIFICATE_PATH', defaultValue: '', description: 'Pass Only Path to SSL Certificate (Required if HTTPS is enabled)')
         string(name: 'CERTIFICATE_NAME', defaultValue: './nginx/ssl/certificate.pem', description: 'Pass Path With SSL Certificate Name (Required if HTTPS is enabled)')
