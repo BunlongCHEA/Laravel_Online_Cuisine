@@ -102,8 +102,6 @@ pipeline {
                     echo '************************************** \n'
                     echo '***Stop and Remove all Containers...'
                     echo '************************************** \n'
-                    docker-compose down
-                    docker rmi ${CONTAINER_IMG_APP} ${CONTAINER_IMG_DB} ${CONTAINER_IMG_NGINX}
                     docker images
 
                     echo '************************************** \n'
