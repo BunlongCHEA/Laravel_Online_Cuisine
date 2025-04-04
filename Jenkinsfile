@@ -5,8 +5,8 @@ pipeline {
         choice(name: 'APP_ENV', choices: ['Staging', 'Production', 'Development'], description: 'Select the deployment environment')
         booleanParam(name: 'USE_HTTPS', defaultValue: false, description: 'Run on HTTPS (Requires Certificate)')
         // string(name: 'CERTIFICATE_PATH', defaultValue: '', description: 'Pass Only Path to SSL Certificate (Required if HTTPS is enabled)')
-        string(name: 'CERTIFICATE_NAME', defaultValue: './nginx/ssl/certificate.pem', description: 'Pass Path With SSL Certificate Name (Required if HTTPS is enabled)')
-        string(name: 'CERTIFICATE_KEY_NAME', defaultValue: './nginx/ssl/private_key.key', description: 'Pass Path With SSL Certificate Key Name (Required if HTTPS is enabled)')
+        string(name: 'CERTIFICATE_NAME', defaultValue: './nginx/certificate.pem', description: 'Pass Path With SSL Certificate Name (Required if HTTPS is enabled)')
+        string(name: 'CERTIFICATE_KEY_NAME', defaultValue: './nginx/private_key.key', description: 'Pass Path With SSL Certificate Key Name (Required if HTTPS is enabled)')
     }
     environment {
         PROJECT_NAME = 'Online_Food'
