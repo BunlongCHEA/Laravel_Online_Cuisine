@@ -100,8 +100,10 @@ pipeline {
                 script {
                     sh """
                     echo '************************************** \n'
-                    echo '***Stop and Remove all Containers...'
+                    echo '***Stop & Check all Containers...'
                     echo '************************************** \n'
+                    docker-compose down
+                    docker ps -a
                     docker images
 
                     echo '************************************** \n'
