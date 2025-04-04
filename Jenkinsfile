@@ -5,8 +5,8 @@ pipeline {
         choice(name: 'APP_ENV', choices: ['Production', 'Development', 'Staging'], description: 'Select the deployment environment')
         booleanParam(name: 'USE_HTTPS', defaultValue: false, description: 'Run on HTTPS (Requires Certificate)')
         // string(name: 'CERTIFICATE_PATH', defaultValue: '', description: 'Pass Only Path to SSL Certificate (Required if HTTPS is enabled)')
-        string(name: 'CERTIFICATE_NAME', defaultValue: '', description: 'Pass Path With SSL Certificate Name (Required if HTTPS is enabled)')
-        string(name: 'CERTIFICATE_KEY_NAME', defaultValue: '', description: 'Pass Path With SSL Certificate Key Name (Required if HTTPS is enabled)')
+        string(name: 'CERTIFICATE_NAME', defaultValue: './nginx/ssl/certificate.pem', description: 'Pass Path With SSL Certificate Name (Required if HTTPS is enabled)')
+        string(name: 'CERTIFICATE_KEY_NAME', defaultValue: './nginx/ssl/private_key.key', description: 'Pass Path With SSL Certificate Key Name (Required if HTTPS is enabled)')
     }
     environment {
         PROJECT_NAME = 'Online_Food'
@@ -77,13 +77,13 @@ pipeline {
                     echo '************************************** \n'
                     
                     if [ "${params.USE_HTTPS}" = true ]; then
-                        sed -i 's|/etc/nginx/ssl/cert.pem|${params.CERTIFICATE_NAME}|g' ${NGINX_FILE}
-                        sed -i 's|/etc/nginx/ssl/cert.key|${params.CERTIFICATE_KEY_NAME}|g' ${NGINX_FILE}
+                        sed -i 's|./nginx/ssl/certificate.pem|${params.CERTIFICATE_NAME}|g' ${DOCKER_COMPOSE_FILE}
+                        sed -i 's|./nginx/ssl/private_key.key|${params.CERTIFICATE_KEY_NAME}|g' ${DOCKER_COMPOSE_FILE}
                         sed -i 's|localhost|${DORMAIN_NAME}|g' ${NGINX_FILE}
 
                     else
                         echo 'Configuring Nginx for HTTP...'
-                        sed -i 's|server_name localhost;|server_name ${DORMAIN_NAME}|g' ${DOCKER_COMPOSE_FILE}
+                        sed -i 's|server_name localhost;|server_name ${DORMAIN_NAME}|g' ${NGINX_FILE}
                     fi
 
                     echo '************************************** \n'
