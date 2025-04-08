@@ -1,0 +1,25 @@
+# Makes it accessible from the outside world (port 80/443).
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: laravel-ingress
+  namespace: laravel-prod
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: food.bunlong.site # This is the external host name
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: laravel-service # This points to the Service created earlier
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - food.bunlong.site
+    secretName: laravel-tls

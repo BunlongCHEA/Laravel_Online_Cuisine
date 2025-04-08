@@ -1,0 +1,21 @@
+# Defines how your Laravel container runs (replicas, image, ports, etc).
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laravel-app
+  namespace: laravel-prod
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: laravel  # This label links to the Service and Ingress
+  template:
+    metadata:
+      labels:
+        app: laravel  # This label is used by the Service to target these pods
+    spec:
+      containers:
+      - name: laravel
+        image: cbunlong/laravel_order_cuisine:latest
+        ports:
+        - containerPort: 80

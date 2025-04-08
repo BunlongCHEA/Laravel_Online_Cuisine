@@ -1,0 +1,21 @@
+# Tells ArgoCD what to deploy and from where.
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: laravel-order-cuisine
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/BunlongCHEA/Laravel_Online_Cuisine
+    targetRevision: HEAD
+    path: manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: laravel-prod
+  # syncPolicy:
+  #   automated:
+  #     selfHeal: true
+  #     prune: true
+  #   syncOptions:
+  #     - CreateNamespace=true

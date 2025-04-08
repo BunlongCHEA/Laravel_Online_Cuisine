@@ -1,0 +1,14 @@
+# Exposes your pods inside the cluster.
+apiVersion: v1
+kind: Service
+metadata:
+  name: laravel-service
+  namespace: laravel-prod
+spec:
+  selector:
+    app: laravel  # This matches the label set by the Deployment's pods
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: ClusterIP
