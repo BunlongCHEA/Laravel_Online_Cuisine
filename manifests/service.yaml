@@ -11,4 +11,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: ClusterIP
+      nodePort: 30080  # Port that will be exposed to the outside world
+  type: LoadBalancer  # exposed via an external load balancer (Like GCP, AWS, etc.). The load balancer will route traffic to the service, and it is typically used for production environments.
